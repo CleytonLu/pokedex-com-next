@@ -1,0 +1,14 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    padding: 1em 1.2em;
+    margin-bottom: 2em;
+    background-color: rgb(109, 107, 107);
+    color: #fff;
+}
+
+.img{
+    position: relative;
+    left: 30px;
+    margin-bottom: 10px;
+}
