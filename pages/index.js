@@ -1,5 +1,6 @@
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import Image from 'next/image';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,14 +23,18 @@ export async function getStaticProps(){
 
 export default function Home({pokemons}) {
   return (
-    <div>
-      <h1>Pokdex</h1>
-      <ul>
-        {pokemons.map(pokemon => (
-          <li key={pokemon.id}>{pokemon.name}</li>
-        ))}
-      </ul>
+    <>
+      <div className={styles.title_container}>
+        <h1 className={styles.title}>Poke<span>dex</span></h1>
+        <Image src='/images/pokeball.png' width={50} height={50} alt="Pokedex" />
+      </div>
       
-    </div>
+      <div className={styles.pokemon_container}>
+        {pokemons.map(pokemon => (
+          <p key={pokemon.id}>{pokemon.name}</p>
+        ))}
+      </div>
+      
+    </>
   )
 }

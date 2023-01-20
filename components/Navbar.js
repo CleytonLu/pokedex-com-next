@@ -6,7 +6,7 @@ export default function Navbar(){
         <nav className={styles.navbar}>
             <div>
                 <Image className={styles.img} src="/images/pokeball.png" width={40} height={40} alt="Pokébola" />
-                <h1>Pokédex</h1>
+                <h1>Pokedex</h1>
             </div>
         </nav>
     )
