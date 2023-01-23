@@ -2,8 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   images:{
-    domains: ['pokeapi.co'],
+    domains: ['raw.githubusercontent.com'],
   }
 }
   
 module.exports = nextConfig
+// 'pokeapi.co'
