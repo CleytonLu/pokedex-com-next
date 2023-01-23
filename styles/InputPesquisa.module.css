@@ -1,0 +1,14 @@
+.container_pesquisa{
+    display: flex;
+    justify-content: center;
+    top: -50px;
+    margin-bottom: 3em;
+}
+
+.container_pesquisa input{
+    border: none;
+    border-bottom: 1px solid #333;
+    padding: 3px;
+    width: 30em;
+    margin-right: .5em;
+}

@@ -4,11 +4,20 @@
     padding: 1em 1.2em;
     margin-bottom: 2em;
     background-color: rgb(109, 107, 107);
+    transition: .3s;
+}
+
+.navbar h1{
     color: #fff;
+    text-decoration: none;
 }
 
 .img{
     position: relative;
     left: 30px;
     margin-bottom: 10px;
+}
+
+.img:hover{
+    transform: scale(1.29,1.29);
 }

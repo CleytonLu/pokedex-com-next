@@ -2,8 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   images:{
-    domains: ['raw.githubusercontent.com'],
+    domains: ['pokeapi.co'],
   }
 }
-
+  
 module.exports = nextConfig
+// https://pokeapi.co/api/v2/pokemon?limit=200
