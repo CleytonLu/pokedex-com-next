@@ -42,7 +42,7 @@ export default function Home({pokemons}) {
                     onChange={(e) => setEvent(e.target.value)} 
                     value={event} 
                     type="search" 
-                    placeholder="Busca Pokemon (ainda não está funcioanando)"
+                    placeholder="Busca Pokemon"
                     />
                 <Image src={'/images/iconSearch.png'} width={20} height={20} />
             </div>
