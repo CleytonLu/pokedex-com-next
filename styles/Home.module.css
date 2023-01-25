@@ -40,3 +40,19 @@
     width: 30em;
     margin-right: .5em;
 }
+
+@media (max-width: 440px){
+    .pokemon_container{
+        display: grid;
+        width: 400px;
+        grid-template-columns: repeat(2 , 1fr);
+        
+    }
+    .title_container{
+        margin-left: 100px;
+    }
+
+    .container_pesquisa input{
+        width: 25em;
+    }
+}
