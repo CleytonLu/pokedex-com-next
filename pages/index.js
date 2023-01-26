@@ -7,7 +7,7 @@ import Card from '../components/Card'
 
 export async function getStaticProps(){
 
-  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=200')
+  const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=252')
   const data = await res.json()
 
   // add pokemon index
@@ -44,7 +44,7 @@ export default function Home({pokemons}) {
                     type="search" 
                     placeholder="Busca Pokemon"
                     />
-                <Image src={'/images/iconSearch.png'} width={20} height={20} />
+                <Image src={'/images/iconSearch.png'} width={20} height={20} alt ='Pesquisa'/>
             </div>
 
       (<div className={styles.pokemon_container}>

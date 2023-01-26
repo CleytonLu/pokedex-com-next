@@ -3,6 +3,7 @@ import Link from "next/link"
 import styles from '../styles/Navbar.module.css'
 
 export default function Navbar(){
+
     return(
         <nav className={styles.navbar}>
             <div>
@@ -14,9 +15,14 @@ export default function Navbar(){
                         alt="Pokébola" />
                     </div> 
                 </Link>
-            
-                    <h1>Pokedex</h1>
+                
+                <ul className={styles.links_nav}>
+                    <Link className={styles.link} href='/'><li>Pokedex</li></Link>
+                    <Link className={styles.link} href='/categoria'><li>Categorias</li></Link>
+                </ul>
             </div>
+
+
         </nav>
     )
 }

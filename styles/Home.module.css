@@ -41,6 +41,30 @@
     margin-right: .5em;
 }
 
+/* .inicio{
+    position: fixed;
+    display: flex;
+    right: 0;
+    background-color: #e33d33;
+    border: none;
+    color: #fff;
+    border-radius: .3em;
+    padding: .5em 1em;
+    width: 7em;
+    height: 3em;
+    margin-right: 4.5em;
+    top: 40em;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.inicio:hover{
+    background-color: #333;
+    transform: scale(1.1);
+} */
+
+
 @media (max-width: 440px){
     .pokemon_container{
         display: grid;

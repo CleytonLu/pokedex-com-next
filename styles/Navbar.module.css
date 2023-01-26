@@ -13,12 +13,31 @@
 }
 
 .img{
+    display: flex;
     position: relative;
-    left: 30px;
+    margin: auto;
     margin-bottom: 10px;
 }
 
 .img:hover{
     transform: scale(1.29,1.29);
+}
+
+.links_nav{
+    display: flex;
+    gap: .6em;
+    list-style: none;
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+
+.link{
+    text-decoration: none;
+    color: #fff;
+}
+
+.link:hover{
+    color: #000;
+    transform: scale(1.1);
 }
 
