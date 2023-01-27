@@ -47,11 +47,11 @@ export default function Home({pokemons}) {
                 <Image src={'/images/iconSearch.png'} width={20} height={20} alt ='Pesquisa'/>
             </div>
 
-      (<div className={styles.pokemon_container}>
+      <div className={styles.pokemon_container}>
         {filter.map(pokemon => (
           <Card key={pokemon.id} pokemon={pokemon} />
         ))}
-      </div>)
+      </div>
       
     </>
   )
