@@ -18,7 +18,7 @@ export default function Navbar(){
                 
                 <ul className={styles.links_nav}>
                     <Link className={styles.link} href='/'><li>Pokedex</li></Link>
-                    <Link className={styles.link} href='/categoria'><li>Categorias</li></Link>
+                    <Link className={styles.link} href="/pageCategoria"><li>Categorias</li></Link>
                 </ul>
             </div>
 

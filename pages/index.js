@@ -22,7 +22,7 @@ export async function getStaticProps(){
 
 
 
-export default function Home({pokemons}) {  
+export default function Home({pokemons}) {
 
   const [event, setEvent] = useState('')
 
