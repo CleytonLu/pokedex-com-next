@@ -1,12 +1,17 @@
 import CardCategoria from "@/components/CardCategoria";
-import { tipo } from "../tipoPokemon";
+import { useEffect } from "react";
+import Home from '../index'
 
+// API Type
 export const  getStaticPaths = async () => {
 
-    const api = 'https://pokeapi.co/api/v2/pokemon?limit=252';
+    const api = 'https://pokeapi.co/api/v2/type/';
 
+    // Type
     const res = await fetch(`${api}`)
     const data = await res.json()
+
+
 
     //  params e criação de id para a API
     const paths = data.results.map((pokemon, index)=> {
@@ -18,28 +23,41 @@ export const  getStaticPaths = async () => {
     return{paths: paths, fallback: false}
 }
 
-export const getStaticProps = async (context) => {
+// API Type
+
+
+export async function getStaticProps(context){
 
     const id = context.params.categoriaPk
 
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const res = await fetch(`https://pokeapi.co/api/v2/type/${id}`)
     const data = await res.json()
 
-    return{props: {pokemon: data}}
+    const resPoke = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=252`)
+    const dataPoke = await resPoke.json()
+
+    dataPoke.results.forEach((item, index) => {
+        item.id = index + 1
+    });
+
+    return{props: {tipos: data, pokemons: dataPoke.results}}
 }
 
-export default function categoriaPk({pokemon}){
+// Página
+export default function categoriaPk({tipos, pokemons}){
 
-    const types = tipo.map(tipo => <p>{tipo.name}</p>)
+    console.log(tipos)
+
+    
 
     return(
         <>
-            <h1>Tipo Tal</h1>
-                <div>
-                    {/* {types.filter((item, index) => (
-                        <CardCategoria key={index} pokemon={pokemon} />
-                    ))} */}
-                </div>
+            <h1>Pokemons {tipos.name}</h1>
+
+            {pokemons.map(pokemon => (
+                <h1 key={pokemon.id}>{pokemon.name} {pokemon.id}</h1>
+            ))}
+                
         </>
     )
 }

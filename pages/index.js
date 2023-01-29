@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Card from '../components/Card'
 
-
 export async function getStaticProps(){
 
   const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=252')
@@ -22,7 +21,7 @@ export async function getStaticProps(){
 
 
 
-export default function Home({pokemons}) {
+export default function Home({pokemons}) { 
 
   const [event, setEvent] = useState('')
 
