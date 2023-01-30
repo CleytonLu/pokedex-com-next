@@ -1,18 +1,13 @@
-import CardCategoria from "@/components/CardCategoria";
-import { useEffect } from "react";
-import Home from '../index'
+import Card from "@/components/Card";
+import styles from '../../styles/CategoriaPk.module.css'
+import { pokemon } from "../pokemon/[pokemonId]";
 
-// API Type
 export const  getStaticPaths = async () => {
 
-    const api = 'https://pokeapi.co/api/v2/type/';
-
-    // Type
-    const res = await fetch(`${api}`)
+    const res = await fetch('https://pokeapi.co/api/v2/type/')
     const data = await res.json()
 
-
-
+    
     //  params e criação de id para a API
     const paths = data.results.map((pokemon, index)=> {
         return {
@@ -22,8 +17,6 @@ export const  getStaticPaths = async () => {
 
     return{paths: paths, fallback: false}
 }
-
-// API Type
 
 
 export async function getStaticProps(context){
@@ -37,27 +30,33 @@ export async function getStaticProps(context){
     const dataPoke = await resPoke.json()
 
     dataPoke.results.forEach((item, index) => {
-        item.id = index + 1
+        item.id = index + 1;
     });
 
-    return{props: {tipos: data, pokemons: dataPoke.results}}
+    return{props: {tipo: data, pokemons: dataPoke.results}}
 }
 
+
 // Página
-export default function categoriaPk({tipos, pokemons}){
-
-    console.log(tipos)
-
+export default function categoriaPk({tipo, pokemons}){
     
+    const defType = tipo.name
+
+    const filtedType = pokemons.filter(pokemon => pokemon.url.types == defType)
+
+    console.log(filtedType)
 
     return(
-        <>
-            <h1>Pokemons {tipos.name}</h1>
+        <div className={`${styles.categoriaPk_content} ${styles['type_' + tipo.name]}`}>
+            <h1>Pokemons {defType}</h1>
 
-            {pokemons.map(pokemon => (
-                <h1 key={pokemon.id}>{pokemon.name} {pokemon.id}</h1>
-            ))}
-                
-        </>
+            <div className={styles.pokemon_container}>
+
+                {pokemons.map(pokemon => (
+                    <Card key={pokemon.id} pokemon={pokemon} />
+                ))}
+            </div>
+
+        </div>
     )
 }

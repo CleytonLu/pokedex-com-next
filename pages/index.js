@@ -1,7 +1,7 @@
 // import InputPesquisa from '@/components/InputPesquisa';
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Card from '../components/Card'
 
 export async function getStaticProps(){
@@ -25,7 +25,10 @@ export default function Home({pokemons}) {
 
   const [event, setEvent] = useState('')
 
-  const filter = pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(event.toLowerCase()))
+  const filter = useMemo(()=> {
+    const lowerCase = event.toLowerCase();
+    return pokemons.filter(pokemon => pokemon.name.toLowerCase().includes(lowerCase))
+  }, [event]) 
 
   return (
     <>

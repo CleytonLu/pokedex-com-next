@@ -3,9 +3,8 @@ import styles from '../../styles/Pokemon.module.css'
 
 
 export const  getStaticPaths = async () => {
-    const api = 'https://pokeapi.co/api/v2/pokemon?limit=252';
 
-    const res = await fetch(`${api}`)
+    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=252')
     const data = await res.json()
 
     //  params e criação de id para a API
@@ -29,7 +28,10 @@ export const getStaticProps = async (context) => {
 }
 
 export default function PokemonId({pokemon}){
-    
+
+    // console.log(tipos)
+
+    console.log(pokemon)
     
     return(
         <div className={styles.pokemon_container}>
