@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import styles from '../../styles/Pokemon.module.css'
 
 
@@ -29,23 +31,51 @@ export const getStaticProps = async (context) => {
 
 export default function PokemonId({pokemon}){
 
-    // console.log(tipos)
+    const [menorUm, setMenorUm] = useState('none')
+    const [maior252, setMaior252] = useState('none')
 
-    console.log(pokemon)
-    
+    useEffect(() => {
+        setMenorUm(pokemon.id == 1 ? 'none' : 'flex')
+        setMaior252(pokemon.id == 252 ? 'none' : 'flex')
+    },[pokemon])
+
+    console.log('Opacity: ' + menorUm)
+    console.log('id: ' + pokemon.id)
+
     return(
         <div className={styles.pokemon_container}>
+
+           <section className={styles.proximo}>
+                <div>
+                    <Link href={`/pokemon/${pokemon.id == 0 ? null : pokemon.id - 1}`}>
+                        <span className={styles.proximo_span} style={{display: menorUm}}>
+                            {pokemon.id <= 1 ? null : 'Anterior'}
+                        </span>
+                    </Link> 
+                </div>
+
+                <div>
+                    <Link href={`/pokemon/${pokemon.id + 1}`}>
+                        <span className={styles.proximo_span} style={{display: maior252}}>
+                            {pokemon.id >= 252 ? undefined : 'Proximo '}
+                        </span>
+                    </Link>
+                </div>
+            </section>
+
             <h1 className={styles.title}>{pokemon.name}</h1>
-            <Image src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                width={200} height={200} alt="Pokemon"
-            />
-            <div>
-                <h3>Número:</h3>
+
+            <div className={styles.div_id}>
+                {/* <h3>Número:</h3> */}
                 <p>#{pokemon.id}</p>
             </div>
 
+            <Image src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+                width={200} height={200} alt="Pokemon"
+            />
+
             <div>
-                <h3>Tipo:</h3>
+                {/* <h3>Tipo:</h3> */}
                 <div className={styles.types_container}>
                     {pokemon.types.map((item, index) => (
                         <span className={`${styles.type} ${styles['type_' + item.type.name]}`} key={index}>{item.type.name}</span>

@@ -1,62 +1,62 @@
 import Card from "@/components/Card";
-import styles from '../../styles/CategoriaPk.module.css'
-import { pokemon } from "../pokemon/[pokemonId]";
+import styles from "../../styles/CategoriaPk.module.css";
+import { mockPokemons } from "../Mock/mockPokemons";
 
-export const  getStaticPaths = async () => {
+export const getStaticPaths = async () => {
+  const res = await fetch("https://pokeapi.co/api/v2/type/");
+  const data = await res.json();
 
-    const res = await fetch('https://pokeapi.co/api/v2/type/')
-    const data = await res.json()
+  //  params e criação de id para a API
+  const paths = data.results.map((pokemon, index) => {
+    return {
+      params: { categoriaPk: (index + 1).toString() },
+    };
+  });
 
-    
-    //  params e criação de id para a API
-    const paths = data.results.map((pokemon, index)=> {
-        return {
-            params : {categoriaPk: (index+1).toString()}
-        }
-    })
+  return { paths: paths, fallback: false };
+};
 
-    return{paths: paths, fallback: false}
+export async function getStaticProps(context) {
+  const id = context.params.categoriaPk;
+
+  const res = await fetch(`https://pokeapi.co/api/v2/type/${id}`);
+  const data = await res.json();
+
+  return { props: { tipo: data } };
 }
-
-
-export async function getStaticProps(context){
-
-    const id = context.params.categoriaPk
-
-    const res = await fetch(`https://pokeapi.co/api/v2/type/${id}`)
-    const data = await res.json()
-
-    const resPoke = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=252`)
-    const dataPoke = await resPoke.json()
-
-    dataPoke.results.forEach((item, index) => {
-        item.id = index + 1;
-    });
-
-    return{props: {tipo: data, pokemons: dataPoke.results}}
-}
-
 
 // Página
-export default function categoriaPk({tipo, pokemons}){
-    
-    const defType = tipo.name
+export default function categoriaPk({ tipo }) {
+  const defType = tipo.name;
 
-    const filtedType = pokemons.filter(pokemon => pokemon.url.types == defType)
+  const typesPerTypes = mockPokemons.map((item) => {
+    return item.tipo;
+  });
 
-    console.log(filtedType)
+  const typesConcat = defType.concat(typesPerTypes);
 
-    return(
-        <div className={`${styles.categoriaPk_content} ${styles['type_' + tipo.name]}`}>
-            <h1>Pokemons {defType}</h1>
+  const filtedCategories = mockPokemons.filter((item) => {
+    if (item.tipo.length > 1 === ("normal", "flying", "fire")) {
+      return item;
+    } else if (item.tipo == defType) {
+      return item;
+    }
+  });
 
-            <div className={styles.pokemon_container}>
+  // console.log(typesConcat);
+  console.log(filtedCategories);
 
-                {pokemons.map(pokemon => (
-                    <Card key={pokemon.id} pokemon={pokemon} />
-                ))}
-            </div>
+  return (
+    <div
+      className={`${styles.categoriaPk_content} ${styles["type_" + tipo.name]}`}
+    >
+      <h1>Pokemons {defType}</h1>
 
-        </div>
-    )
+      <div className={styles.pokemon_container}>
+        {filtedCategories.map((pokemon) => (
+          <Card key={pokemon.id} pokemon={pokemon} />
+        ))}
+      </div>
+    </div>
+  );
 }
