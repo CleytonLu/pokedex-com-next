@@ -1,4 +1,5 @@
 import Card from "@/components/Card";
+import { GoTop } from "@/components/GoTop";
 import styles from "../../styles/CategoriaPk.module.css";
 import { mockPokemons } from "../Mock/mockPokemons";
 
@@ -30,33 +31,40 @@ export default function categoriaPk({ tipo }) {
   const defType = tipo.name;
 
   const typesPerTypes = mockPokemons.map((item) => {
-    return item.tipo;
+    return (item.tipo += defType);
   });
-
-  const typesConcat = defType.concat(typesPerTypes);
 
   const filtedCategories = mockPokemons.filter((item) => {
-    if (item.tipo.length > 1 === ("normal", "flying", "fire")) {
-      return item;
-    } else if (item.tipo == defType) {
-      return item;
+    if (item.tipo == defType) {
+      return item.tipo;
     }
+    return;
   });
 
-  // console.log(typesConcat);
-  console.log(filtedCategories);
+  const todosOsTipos = mockPokemons.forEach((item) => {
+    return item;
+  });
+
+  console.log("typespertypes", typesPerTypes);
+
+  console.log("todoOsTipos", todosOsTipos);
+
+  console.log("tipo", filtedCategories);
 
   return (
-    <div
-      className={`${styles.categoriaPk_content} ${styles["type_" + tipo.name]}`}
-    >
-      <h1>Pokemons {defType}</h1>
+    <div className={`${styles.categoriaPk_content}`}>
+      <h1 className={styles.title}>
+        Pokemons{" "}
+        <span className={`${styles["type_" + defType]} `}>{defType}</span>
+      </h1>
 
       <div className={styles.pokemon_container}>
         {filtedCategories.map((pokemon) => (
           <Card key={pokemon.id} pokemon={pokemon} />
         ))}
       </div>
+
+      <GoTop />
     </div>
   );
 }

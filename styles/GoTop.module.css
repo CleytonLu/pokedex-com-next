@@ -1,0 +1,13 @@
+.ArrowUp{
+    width: 2.5em;
+    height: 2.5em;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    background-color: #333;
+    bottom: 7em;
+    right: 2em;
+    position: fixed;
+    display: flex;
+}
