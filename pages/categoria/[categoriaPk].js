@@ -30,31 +30,21 @@ export async function getStaticProps(context) {
 export default function categoriaPk({ tipo }) {
   const defType = tipo.name;
 
-  const typesPerTypes = mockPokemons.map((item) => {
-    return (item.tipo += defType);
-  });
-
   const filtedCategories = mockPokemons.filter((item) => {
-    if (item.tipo == defType) {
+    if (item.tipo.includes(defType)) {
       return item.tipo;
     }
     return;
   });
 
-  const todosOsTipos = mockPokemons.forEach((item) => {
-    return item;
-  });
+  console.log("todoOsTipos", filtedCategories);
 
-  console.log("typespertypes", typesPerTypes);
-
-  console.log("todoOsTipos", todosOsTipos);
-
-  console.log("tipo", filtedCategories);
+  console.log("tipo", defType);
 
   return (
     <div className={`${styles.categoriaPk_content}`}>
       <h1 className={styles.title}>
-        Pokemons{" "}
+        Pokemons
         <span className={`${styles["type_" + defType]} `}>{defType}</span>
       </h1>
 

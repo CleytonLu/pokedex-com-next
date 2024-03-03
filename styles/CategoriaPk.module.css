@@ -19,6 +19,23 @@
   color: #fff;
 }
 
+@media (max-width: 440px) {
+  .pokemon_container {
+    display: grid;
+    width: 100px;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 0px 20px;
+  }
+  .title_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+  }
+}
+
 .type_normal {
     background-color: #aa9;
   }

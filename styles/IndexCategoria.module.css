@@ -1,102 +1,119 @@
-.CardTipo{
+.CardTipo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+}
+
+.tipo {
+  display: flex;
+  margin: 0.5em auto;
+  padding: 1em;
+  justify-content: center;
+
+  border: 1px solid #333;
+  border-radius: 6px;
+  width: 20em;
+  background-color: rgb(109, 107, 107);
+
+  color: #fff;
+  font-weight: bold;
+  font-size: 17px;
+  text-transform: capitalize;
+  text-decoration: none;
+
+  transition: 0.5s;
+}
+
+.tipo:hover {
+  transform: scale(1.1);
+  color: #000;
+}
+
+@media (max-width: 440px) {
+  .CardTipo {
     display: grid;
-    grid-template-columns: repeat(3 , 1fr);
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
     justify-content: center;
-}
-
-.tipo{
+    align-items: center;
+    gap: 0px 20px;
+  }
+  .title_container {
     display: flex;
-    margin: .5em auto;
-    padding: 1em;
+    align-items: center;
     justify-content: center;
-
-    border: 1px solid #333;
-    border-radius: 6px;
-    width: 20em;
-    background-color: rgb(109, 107, 107);
-    
-    color: #fff;
-    font-weight: bold;
-    font-size: 17px;
-    text-transform: capitalize;
-    text-decoration: none;
-
-    transition: .5s;
-}
-
-.tipo:hover{
-    transform: scale(1.1);
-    color: #000;
+    margin: 30px auto;
+  }
 }
 
 .type_normal {
-    background-color: #aa9;
-  }
-  
-  .type_fire {
-    background-color: #f42;
-  }
-  
-  .type_water {
-    background-color: #39f;
-  }
-  
-  .type_eletric {
-    background-color: #fc3;
-  }
-  
-  .type_grass {
-    background-color: #7c5;
-  }
-  
-  .type_ice {
-    background-color: #6cf;
-  }
-  
-  .type_fighting {
-    background-color: #b54;
-  }
-  
-  .type_poison {
-    background-color: #a59;
-  }
-  
-  .type_ground {
-    background-color: #db5;
-  }
-  
-  .type_flying {
-    background-color: #89f;
-  }
-  
-  .type_psychic {
-    background-color: #f59;
-  }
-  
-  .type_bug {
-    background-color: #ab2;
-  }
-  
-  .type_rock {
-    background-color: #ba6;
-  }
-  
-  .type_ghost {
-    background-color: #66b;
-  }
-  
-  .type_dragon {
-    background-color: #76e;
-  }
-  
-  .type_dark {
-    background-color: #754;
-  }
-  
-  .type_steel {
-    background-color: #aab;
-  }
-  
-  .type_fairy {
-    background-color: #e9e;
-  }
+  background-color: #aa9;
+}
+
+.type_fire {
+  background-color: #f42;
+}
+
+.type_water {
+  background-color: #39f;
+}
+
+.type_eletric {
+  background-color: #fc3;
+}
+
+.type_grass {
+  background-color: #7c5;
+}
+
+.type_ice {
+  background-color: #6cf;
+}
+
+.type_fighting {
+  background-color: #b54;
+}
+
+.type_poison {
+  background-color: #a59;
+}
+
+.type_ground {
+  background-color: #db5;
+}
+
+.type_flying {
+  background-color: #89f;
+}
+
+.type_psychic {
+  background-color: #f59;
+}
+
+.type_bug {
+  background-color: #ab2;
+}
+
+.type_rock {
+  background-color: #ba6;
+}
+
+.type_ghost {
+  background-color: #66b;
+}
+
+.type_dragon {
+  background-color: #76e;
+}
+
+.type_dark {
+  background-color: #754;
+}
+
+.type_steel {
+  background-color: #aab;
+}
+
+.type_fairy {
+  background-color: #e9e;
+}
