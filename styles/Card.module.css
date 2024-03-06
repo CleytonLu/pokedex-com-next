@@ -5,7 +5,7 @@
   flex-direction: column;
   padding: 2em;
   margin-bottom: 2em;
-  width: 22%;
+  width: 100%;
   border-radius: 2em;
   border: 2px solid #e33d33;
   box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
@@ -24,7 +24,7 @@
   align-items: center;
 }
 
-.card .title {
+.card .name {
   text-transform: capitalize;
   margin-bottom: 1em;
   font-size: 1.4em;
@@ -49,6 +49,43 @@
 @media (max-width: 440px) {
   .card {
     width: 100%;
-    height: 90%;
+    min-height: 90%;
+    margin-bottom: 1em;
+    padding: 1em;
+  }
+
+  .card .id {
+    margin: 0;
+    margin-bottom: 8px;
+  }
+
+  .card .btn {
+    padding: 0.5em 0.8em;
+  }
+
+  .card .name {
+    margin-bottom: 0.5em;
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 440px) {
+  .card {
+    margin-bottom: 0.8em;
+    padding: 0.5em;
+  }
+
+  .card .id {
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  .card .btn {
+    padding: 0.5em 0.8em;
+    margin-bottom: 0.8em;
+  }
+
+  .card .name {
+    margin-bottom: 0em;
   }
 }

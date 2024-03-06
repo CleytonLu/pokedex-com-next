@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from '../../styles/Pokemon.module.css'
+import { urlPokemon } from "@/utils/urlPokemon";
 
 
 export const  getStaticPaths = async () => {
 
-    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=252')
+    const res = await fetch(urlPokemon);
     const data = await res.json()
 
     //  params e criação de id para a API

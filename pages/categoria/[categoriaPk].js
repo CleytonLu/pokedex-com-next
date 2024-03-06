@@ -1,7 +1,8 @@
 import Card from "@/components/Card";
-import { GoTop } from "@/components/GoTop";
 import styles from "../../styles/CategoriaPk.module.css";
-import { mockPokemons } from "../Mock/mockPokemons";
+import { mockPokemons } from "@/Mock/mockPokemons";
+import { Pagination } from "@/components/pagination";
+import { usePagination } from "@/hooks/usePagination";
 
 export const getStaticPaths = async () => {
   const res = await fetch("https://pokeapi.co/api/v2/type/");
@@ -37,9 +38,19 @@ export default function categoriaPk({ tipo }) {
     return;
   });
 
-  console.log("todoOsTipos", filtedCategories);
+  const {
+    nextPagination,
+    prevPagination,
+    pagination,
+    pageCurrent,
+    quantityPokemonsItem,
+    valuePartPagination,
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+  } = usePagination({ pokemons: filtedCategories });
 
-  console.log("tipo", defType);
+  const pokemonsList = filtedCategories.slice(valuePartPagination, pagination);
+
+  const isLarge = filtedCategories.length > 20 ? true : false;
 
   return (
     <div className={`${styles.categoriaPk_content}`}>
@@ -49,12 +60,20 @@ export default function categoriaPk({ tipo }) {
       </h1>
 
       <div className={styles.pokemon_container}>
-        {filtedCategories.map((pokemon) => (
+        {pokemonsList.map((pokemon) => (
           <Card key={pokemon.id} pokemon={pokemon} />
         ))}
       </div>
 
-      <GoTop />
+      {isLarge && (
+        <Pagination
+          nextPagination={nextPagination}
+          pageCurrent={pageCurrent}
+          pagination={pagination}
+          prevPagination={prevPagination}
+          quantityPokemonsItem={quantityPokemonsItem}
+        />
+      )}
     </div>
   );
 }

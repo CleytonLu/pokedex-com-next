@@ -1,10 +1,12 @@
 // import InputPesquisa from '@/components/InputPesquisa';
 import styles from "@/styles/Home.module.css";
-import { useCallback, useState } from "react";
 import Card from "../components/Card";
+import { urlPokemon } from "@/utils/urlPokemon";
+import { Pagination } from "@/components/pagination";
+import { usePagination } from "@/hooks/usePagination";
 
 export async function getStaticProps() {
-  const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=252");
+  const res = await fetch(urlPokemon);
   const data = await res.json();
 
   // add pokemon index
@@ -20,37 +22,18 @@ export async function getStaticProps() {
 }
 
 export default function Home({ pokemons }) {
-  const [pagination, setPagination] = useState(20);
-  const [valuePartPagination, setValuePartPagination] = useState(0);
-  const [pageCurrent, setPageCurrent] = useState(1);
+  const {
+    nextPagination,
+    prevPagination,
+    pagination,
+    pageCurrent,
+    quantityPokemonsItem,
+    valuePartPagination,
+  } = usePagination({
+    pokemons,
+  });
 
   const pokemonsList = pokemons.slice(valuePartPagination, pagination);
-
-  const quantityPokemonsItem = Math.round(pokemons.length / 20);
-
-  const nextPagination = () => {
-    setPagination((prev) => prev + 20);
-    setValuePartPagination((prev) => prev + 20);
-    setPageCurrent((prev) => ++prev);
-
-    if (quantityPokemonsItem === pageCurrent) {
-      setPagination(pagination);
-      setValuePartPagination(valuePartPagination);
-      setPageCurrent(pageCurrent);
-    }
-  };
-
-  const prevPagination = useCallback(() => {
-    setPagination((prev) => prev - 20);
-    setValuePartPagination((prev) => prev - 20);
-    setPageCurrent((prev) => --prev);
-
-    if (pagination === 20) {
-      setPagination(20);
-      setValuePartPagination(0);
-      setPageCurrent(1);
-    }
-  }, [pagination]);
 
   return (
     <>
@@ -66,23 +49,13 @@ export default function Home({ pokemons }) {
         ))}
       </div>
 
-      <div className={styles.pagination}>
-        <button
-          id={pagination === 20 ? styles.opacity : styles.prev}
-          onClick={() => prevPagination()}
-        >
-          Anterior
-        </button>
-        <span id={styles.current}> {pageCurrent} </span>
-        <button
-          id={
-            quantityPokemonsItem === pageCurrent ? styles.opacity : styles.next
-          }
-          onClick={() => nextPagination()}
-        >
-          Próximo
-        </button>
-      </div>
+      <Pagination
+        nextPagination={nextPagination}
+        pageCurrent={pageCurrent}
+        pagination={pagination}
+        prevPagination={prevPagination}
+        quantityPokemonsItem={quantityPokemonsItem}
+      />
     </>
   );
 }
