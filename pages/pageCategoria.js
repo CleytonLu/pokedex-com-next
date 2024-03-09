@@ -2,18 +2,21 @@ import Link from "next/link";
 import styles from "../styles/IndexCategoria.module.css";
 
 export async function getStaticProps() {
+  const typeToRemove = ["unknown", "shadow"];
   const res = await fetch(`https://pokeapi.co/api/v2/type/`);
-  const data = await res.json();
+  const data = await res
+    .json()
+    .then((data) =>
+      data.results.filter((item) => !typeToRemove.includes(item.name))
+    );
+
+  //   const filteredArray = data.results.filter(
+  //     (item) => !typeToRemove.includes(item.name)
+  //   );
 
   data.results.forEach((item, index) => {
     item.id = index + 1;
   });
-
-  const typeToRemove = ["unknown", "shadow"];
-
-  const filteredArray = data.results.filter(
-    (item) => !typeToRemove.includes(item.name)
-  );
 
   return { props: { tipos: filteredArray } };
 }
