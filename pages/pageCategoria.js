@@ -7,7 +7,11 @@ export async function getStaticProps() {
   const data = await res
     .json()
     .then((data) =>
-      data.results.filter((item) => !typeToRemove.includes(item.name))
+      JSON.parse(
+        JSON.stringify(
+          data.results.filter((item) => !typeToRemove.includes(item.name))
+        )
+      )
     );
 
   //   const filteredArray = data.results.filter(
