@@ -15,9 +15,13 @@ export async function getStaticProps() {
 export default function PageCategoria({ tipos }) {
   console.log(tipos);
 
+  const typeToRemove = ["unknown", "shadow"];
+
+  const filteredArray = tipos.filter((item) => !typeToRemove.includes(item));
+
   return (
     <div className={styles.CardTipo}>
-      {tipos
+      {filteredArray
         .map((tipo) => (
           <Link
             href={`/categoria/${tipo.id}`}
