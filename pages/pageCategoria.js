@@ -14,11 +14,11 @@ export async function getStaticProps() {
   //     (item) => !typeToRemove.includes(item.name)
   //   );
 
-  data.results.forEach((item, index) => {
+  data.forEach((item, index) => {
     item.id = index + 1;
   });
 
-  return { props: { tipos: filteredArray } };
+  return { props: { tipos: data } };
 }
 
 export default function PageCategoria({ tipos }) {
