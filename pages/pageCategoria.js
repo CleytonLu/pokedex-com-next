@@ -40,19 +40,17 @@ export default function PageCategoria({ tipos }) {
 
   return (
     <div className={styles.CardTipo}>
-      {filteredArray
-        .map((tipo) => (
-          <Link
-            href={`/categoria/${tipo.id}`}
-            key={tipo.id}
-            className={styles.tipo}
-          >
-            <span className={`${styles.tipo} ${styles["type_" + tipo.name]}`}>
-              {tipo.name}
-            </span>
-          </Link>
-        ))
-        .slice(0, 16)}
+      {filteredArray.map((tipo) => (
+        <Link
+          href={`/categoria/${tipo.id}`}
+          key={tipo.id}
+          className={styles.tipo}
+        >
+          <span className={`${styles.tipo} ${styles["type_" + tipo.name]}`}>
+            {tipo.name}
+          </span>
+        </Link>
+      ))}
     </div>
   );
 }
