@@ -9,7 +9,13 @@ export async function getStaticProps() {
     item.id = index + 1;
   });
 
-  return { props: { tipos: data.results } };
+  const typeToRemove = ["unknown", "shadow"];
+
+  const filteredArray = data.results.filter(
+    (item) => !typeToRemove.includes(item.name)
+  );
+
+  return { props: { tipos: filteredArray } };
 }
 
 export default function PageCategoria({ tipos }) {
