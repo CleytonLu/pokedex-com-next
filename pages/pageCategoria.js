@@ -3,22 +3,28 @@ import styles from "../styles/IndexCategoria.module.css";
 
 export async function getStaticProps() {
   const typeToRemove = ["unknown", "shadow"];
+  //   const filteredArray = (data) => {
+  //     data.results.filter((item) => {
+  //       if (typeToRemove.includes(item.name)) {
+  //         return;
+  //       } else {
+  //         return item;
+  //       }
+  //     });
+  //   };
+
   const res = await fetch(`https://pokeapi.co/api/v2/type/`);
-  const data = await res
-    .json()
-    .then((data) =>
-      JSON.parse(
-        JSON.stringify(
-          data.results.filter((item) => !typeToRemove.includes(item.name))
-        )
-      )
-    );
+  const data = await res.json().then((data) =>
+    data.results.filter((item) => {
+      if (typeToRemove.includes(item.name)) {
+        return;
+      } else {
+        return item;
+      }
+    })
+  );
 
-  //   const filteredArray = data.results.filter(
-  //     (item) => !typeToRemove.includes(item.name)
-  //   );
-
-  data.forEach((item, index) => {
+  data?.forEach((item, index) => {
     item.id = index + 1;
   });
 
