@@ -5,11 +5,21 @@ import { Pagination } from "@/components/pagination";
 import { usePagination } from "@/hooks/usePagination";
 
 export const getStaticPaths = async () => {
+  const typeToRemove = ["unknown", "shadow"];
+
   const res = await fetch("https://pokeapi.co/api/v2/type/");
-  const data = await res.json();
+  const data = await res.json().then((data) =>
+    data.results.filter((item) => {
+      if (typeToRemove.includes(item.name)) {
+        return undefined;
+      } else {
+        return item;
+      }
+    })
+  );
 
   //  params e criação de id para a API
-  const paths = data.results.map((pokemon, index) => {
+  const paths = data?.map((pokemon, index) => {
     return {
       params: { categoriaPk: (index + 1).toString() },
     };
