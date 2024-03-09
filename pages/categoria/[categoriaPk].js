@@ -28,7 +28,7 @@ export async function getStaticProps(context) {
 }
 
 // Página
-export default function categoriaPk({ tipo }) {
+export default function CategoriaPk({ tipo }) {
   const defType = tipo.name;
 
   const filtedCategories = mockPokemons.filter((item) => {
@@ -45,7 +45,6 @@ export default function categoriaPk({ tipo }) {
     pageCurrent,
     quantityPokemonsItem,
     valuePartPagination,
-    // eslint-disable-next-line react-hooks/rules-of-hooks
   } = usePagination({ pokemons: filtedCategories });
 
   const pokemonsList = filtedCategories.slice(valuePartPagination, pagination);
