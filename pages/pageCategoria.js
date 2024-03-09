@@ -17,7 +17,7 @@ export async function getStaticProps() {
   const data = await res.json().then((data) =>
     data.results.filter((item) => {
       if (typeToRemove.includes(item.name)) {
-        return;
+        return undefined;
       } else {
         return item;
       }
