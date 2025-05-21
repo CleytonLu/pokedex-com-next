@@ -15,7 +15,7 @@ export const getStaticPaths = async () => {
       } else {
         return item;
       }
-    })
+    }),
   );
 
   //  params e criação de id para a API

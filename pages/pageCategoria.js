@@ -21,7 +21,7 @@ export async function getStaticProps() {
       } else {
         return item;
       }
-    })
+    }),
   );
 
   data?.forEach((item, index) => {
